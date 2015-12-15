@@ -1,0 +1,12 @@
+<h2>Index</h2>
+<a href="/about"><button type="button" class="btn btn-default">About</button></a>
+
+
+<input type="text" class="form-control" placeholder="Search" ng-model="search.name">
+
+
+<!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-distance="3"> -->
+  <div class="well" ng-repeat="marvel in marvels | filter:search | limitTo:filterLimit">
+    <a ng-href="/marvel/{{marvel._id}}">{{marvel.name}}</a>
+  </div>
+<!-- </div> -->

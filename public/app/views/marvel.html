@@ -1,0 +1,71 @@
+<h2 class="animated fadeInDownBig">{{marvels.name}}<hr></h2>
+
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <img ng-src="{{marvels.thumbnail.path}}.jpg" id="image" class="animated fadeInLeftBig img-responsive"/>
+    <!-- Sits below the image (bottom-left pane) -->
+    <div class="bottom-left-pane animated fadeInUpBig">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h4>Height
+          <p><small>{{marvels.wiki.height}}</small></h4></p>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h4>Eyes
+          <p><small>{{marvels.wiki.eyes}}</small></h4></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h4>Weight
+          <p><small>{{marvels.wiki.weight}}</small></h4></p>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h4>Hair
+          <p><small>{{marvels.wiki.hair}}</small></h4></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h4>Education
+          <p><small>{{marvels.wiki.education}}</small></h4></p>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h4>Relatives
+          <p><small>{{marvels.wiki.relatives}}</small></h4></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well animated fadeInRightBig col-sm-6 col-md-6 col-lg-6" id="right-pane">
+    <h4>Debut
+    <p><small>{{marvels.wiki.debut}}</small></h4></p>
+    <hr>
+    <h4>Bio
+    <p><small>{{marvels.wiki.bio_text}}</small></h4></p>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <h4>Real Name
+        <p><small>{{marvels.wiki.real_name}}</small></h4></p>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <h4>Identity
+        <p><small>{{marvels.wiki.identity}}</small></h4></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <h4>Citizenship
+        <p><small>{{marvels.wiki.citizenship}}</small></h4></p>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <h4>Groups
+        <p><small>{{marvels.wiki.groups}}</small></h4></p>
+      </div>
+    </div>
+    <hr>
+    <h4>Powers
+    <p><small>{{marvels.wiki.powers}}</small></h4></p>
+  </div>
+</div>
