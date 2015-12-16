@@ -30,8 +30,12 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   $scope.tweets = [];
 
   Marvel.get({id: $routeParams.id}, function(data) {
+    
     $scope.marvels = data;
-    var parsedName = $scope.marvels.name.split(' (')[0];
+    // console.log($scope.marvels.name.split(' (')[0]);
+    var parsedName = $scope.marvels.name.split(' (')[0].split(' ');
+    parsedName = parsedName.join("");
+    parsedName = parsedName.split('-');
     socket.emit('setTweet', {track: '#' + parsedName});
   }, function(data) {
     console.log(data);

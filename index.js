@@ -129,96 +129,189 @@ app.post("/api/auth", function(req, res) {
 //   console.log('user connected')
 // })
 
-var stream = twitter.stream('statuses/filter', { track: '#VoiceFinale', language: 'en' });
+// var stream = twitter.stream('statuses/filter', { track: '', language: 'en' });
 // var tweetsBuffer = [];
 
-stream.on('connect', function(request) {
-    console.log('Connected to Twitter API');
-});
+// stream.on('connect', function(request) {
+//     console.log('Connected to Twitter API');
+// });
  
-stream.on('disconnect', function(message) {
-    console.log('Disconnected from Twitter API. Message: ' + message);
-});
+// stream.on('disconnect', function(message) {
+//     console.log('Disconnected from Twitter API. Message: ' + message);
+// });
  
-stream.on('reconnect', function (request, response, connectInterval) {
-  console.log('Trying to reconnect to Twitter API in ' + connectInterval + ' ms');
-})
-stream.on('tweet', function(tweet) {
-  var msg = {};
-  msg.text = tweet.text;
-  msg.user = {
-    name: tweet.user.name,
-    image: tweet.user.profile_image_url
-  };
-  console.log(msg);
-  io.sockets.emit('tweets', msg);
-})
-
-// This checks to make sure there is a connection, if not, the tweet machine will stop functioning
-var nbOpenSockets = 0;
- 
+// stream.on('reconnect', function (request, response, connectInterval) {
+//   console.log('Trying to reconnect to Twitter API in ' + connectInterval + ' ms');
+// })
+// stream.on('tweet', function(tweet) {
+//   var msg = {};
+//   msg.text = tweet.text;
+//   msg.user = {
+//     name: tweet.user.name,
+//     image: tweet.user.profile_image_url
+//   };
+//   console.log(msg);
+//   io.sockets.emit('tweets', msg);
+// })
 io.sockets.on('connection', function(socket) {
+  socket.on('setTweet', function(query) {
+    twitter.get('search/tweets', { q: query.track, count: 10, lang: 'en' }, function(err, data, response) {
+      var msg = {};
+      var urlRegex = /(https:\/\/t\.co\/[^\s]*)/g;
 
-  socket.on('setTweet', function(data) {
-      console.log("hello", data.track)
-      console.log("I DID STUFF!!")
-    
-    if(data.track) {
-      console.log(data.track)
-      stream.stop()
-      
-      var newStream = twitter.stream('statuses/filter', { track: data.track, language: 'en' });
+      var filtered = data.statuses.map(function(element) {
+        var blah = element.text.match(urlRegex)
+        msg.text = element.text;
+        // if (blah != null) {
+        //   msg.url = blah[0];
+        // }
+        // if (element.entities.media) {
+        //   var shit = element.entities.media[0].media_url;
+        // }
+        if (element.entities.media) {
+          if (element.entities.media != null) {
+            parseArray = element.entities.media.map(function(value) {
+                return value.media_url;
+            });
+            if (parseArray.length > 0) {
+              msg.url = parseArray[0];
+            }
+          }
+        }
 
-      newStream.on('connect', function(request) {
-        console.log('Connected to Twitter API');
-      });
-
-      newStream.on('disconnect', function(message) {
-        console.log('Disconnected from Twitter API. Message: ' + message);
-      });
-
-      newStream.on('reconnect', function (request, response, connectInterval) {
-        console.log('Trying to reconnect to Twitter API in ' + connectInterval + ' ms');
-      });
-      newStream.on('tweet', function(tweet) {
-        var msg = {};
-        msg.text = tweet.text;
+        // msg.url = element.text.replace(urlRegex, function(url) {
+        //   return "<a href=" + url + > + url + "</a>";
+        // })
         msg.user = {
-        name: tweet.user.name,
-        image: tweet.user.profile_image_url
-        };
-        console.log(msg);
+          name: element.user.screen_name,
+          image: element.user.profile_image_url
+        }
+        // console.log(parseArray);
+        // console.log(shit);
         io.sockets.emit('tweets', msg);
-      });
-
-    }
-  });
-
-
-
-
-
-
-  console.log('Client connected !');
-  if (nbOpenSockets <= 0) {
-    nbOpenSockets = 0;
-    console.log('First active client. Start streaming from Twitter');
-    stream.start();
-  }
- 
-  nbOpenSockets++;
- 
-  socket.on('disconnect', function() {
-    console.log('Client disconnected !');
-    nbOpenSockets--;
-
-    if (nbOpenSockets <= 0) {
-      nbOpenSockets = 0;
-      console.log("No active client. Stop streaming from Twitter");
-      stream.stop();
-    }
-  });
+      })
+    })
+  })
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// THIS STUFF WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// var nbOpenSockets = 0;
+ 
+// io.sockets.on('connection', function(socket) {
+
+//   socket.on('setTweet', function(data) {
+//       console.log("hello", data.track)
+//       console.log("I DID STUFF!!")
+    
+//     if(data.track) {
+//       console.log(data.track)
+//       stream.stop()
+      
+//       var stream = twitter.stream('statuses/filter', { track: data.track, language: 'en' });
+//       stream.on('connect', function(request) {
+//         console.log('Connected to Twitter API');
+//       });
+
+//       stream.on('disconnect', function(message) {
+//         console.log('Disconnected from Twitter API. Message: ' + message);
+//       });
+
+//       stream.on('reconnect', function (request, response, connectInterval) {
+//         console.log('Trying to reconnect to Twitter API in ' + connectInterval + ' ms');
+//       });
+//       stream.on('tweet', function(tweet) {
+//         var msg = {};
+//         msg.text = tweet.text;
+//         msg.user = {
+//         name: tweet.user.name,
+//         image: tweet.user.profile_image_url
+//         };
+//         console.log(msg);
+//         io.sockets.emit('tweets', msg);
+//       });
+
+//     }
+//   });
+
+// // This checks to make sure there is a connection, if not, the tweet machine will stop functioning
+//   console.log('Client connected !');
+//   if (nbOpenSockets <= 0) {
+//     nbOpenSockets = 0;
+//     console.log('First active client. Start streaming from Twitter');
+//     stream.start();
+//   }
+ 
+//   nbOpenSockets++;
+ 
+//   socket.on('disconnect', function() {
+//     console.log('Client disconnected !');
+//     nbOpenSockets--;
+
+//     if (nbOpenSockets <= 0) {
+//       nbOpenSockets = 0;
+//       console.log("No active client. Stop streaming from Twitter");
+//       stream.stop();
+//     }
+//   });
+// });
+// END OF THE WORKING STUFF!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MIGHT BE ABLE TO DELETE THIS STUFF
+
 // io.on('connect', function(socket) {
 //   console.log('User connected');
 //   var stream = null;

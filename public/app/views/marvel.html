@@ -71,14 +71,18 @@
   </div>
 </div>
 
-<div class="container">
-  <section class="post">
-    <!-- <div class="well"> -->
-      <header class="well post-header" ng-repeat="tweet in tweets">
+<div class="row" id="tweets">
+  <div class="container">
+    <section class="post">
+        <header class="well post-header" id="individual" ng-repeat="tweet in tweets">
           <img class="post-avatar" alt="{{tweet.user.name}}" height="52" width="52" src="{{tweet.user.image}}" />
           <h4 class="post-user"> {{tweet.user.name}}</h4>
           <h5>{{tweet.text}}</h5>
-      <!-- </header> -->
-    </div>
-  </section>
+          <!-- <img ng-img="{{tweet.url}}"> -->
+          <img ng-src="{{tweet.url}}">
+          <img 
+        </header>
+      </div>
+    </section>
+  </div>
 </div>
