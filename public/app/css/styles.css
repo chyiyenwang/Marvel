@@ -13,3 +13,54 @@ background-image: none !important;
   width: 200%;
   height: auto;
 }
+
+#right-pane {
+  /*border: 2px solid black;*/
+  /*background: linear-gradient(to right, #F0141E, #AD0A1C);*/
+  background: linear-gradient(to right, #BE0606, #850303);
+  font-family: 'PT Sans', sans-serif;
+  color: white;
+}
+
+#bottom-left-pane {
+  /*border: 2px solid red;*/
+  background: #110000;
+  font-family: 'PT Sans', sans-serif;
+  color: white;
+}
+
+div h4 p small {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Twitter Timeline */
+.post {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 1px 1px #aaa;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  margin: 1em auto;
+}
+
+.post-header {
+  margin: 0 0 1em;
+}
+
+.post-avatar {
+  border-radius: 50%;
+  float: left;
+  margin-left: -3.5em;
+  margin-top: -2em;
+  margin-right: 1em;
+}
+
+.post-meta {
+  color: #999;
+  font-size: 90%;
+  margin: 0;
+}

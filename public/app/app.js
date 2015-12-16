@@ -25,14 +25,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     templateUrl: "app/views/404.html"
   });
   $locationProvider.html5Mode(true);
-// }])
-// .config(['$httpProvider', function($httpProvider) {
-//   $httpProvider.interceptors.push('AuthInterceptor');
-// }])
-// .run(['$rootScope', 'Auth', function($rootScope, Auth) {
-//   $rootScope.isLoggedIn = function() {
-//     return Auth.isLoggedIn.apply(Auth);
-//   }
+}])
+.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push('AuthInterceptor');
+}])
+.run(['$rootScope', 'Auth', function($rootScope, Auth) {
+  $rootScope.isLoggedIn = function() {
+    return Auth.isLoggedIn.apply(Auth);
+  }
   }
 ]);
 app.filter('capitalize', function() {

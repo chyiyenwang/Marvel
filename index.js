@@ -4,16 +4,24 @@ var mongoose = require("mongoose");
 var expressJWT = require("express-jwt");
 var jwt = require("jsonwebtoken");
 var request = require('request');
-var fs = require('fs');
+var Twit = require('twit');
+var server = app.listen(3030);
+var io = require('socket.io').listen(server);
 var port = process.env.PORT || 3000;
+
+
+var twitter = new Twit({
+  consumer_key:         process.env.TWIT_CONSUMER_KEY,
+  consumer_secret:      process.env.TWIT_CONSUMER_SECRET,
+  access_token:         process.env.TWIT_ACCESS_TOKEN,
+  access_token_secret:  process.env.TWIT_ACCESS_TOKEN_SECRET
+});
 
 var secret = "ifyousmellwhattherockiscookin";
 
 var User = require("./models/user");
 var Marvel = require('./models/marvel');
 mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/marvel");
-// var db = mongoose.connection
-
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -21,6 +29,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 var path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "bower_components")));
 // var basename  = path.basename(module.filename);
 
 app.use('/api/users', expressJWT({secret: secret})
@@ -46,6 +55,8 @@ app.post("/api/auth", function(req, res) {
     });
   });
 });
+
+
 
 // db.on('error', function(error){console.log(error)})
 // db.once('open', function(){
@@ -91,6 +102,141 @@ app.post("/api/auth", function(req, res) {
 //     }
 //   return object
 // }
+// twitter.get('search/tweets', {q: "pikachu", count: 20}, function(err, data, response) {
+//   console.log(response);
+// })
+
+// io.on('connection', function(socket) {
+//   searches[socket.id] = {};
+//   socket.on('q', function(q) {
+
+//   var stream = twitter.stream('statusus/filter', {track: })
+//   })
+// })
+
+// stream.on('tweet', function(tweet) {
+//   console.log(tweet);
+// })
+// twitter.get('search/tweets', { q: '#pikachu', count: 20 }, function(err, data, response) {
+//   console.log(data)
+// })
+
+
+// var stream = twitter.stream('statuses/filter', { track: req.body.queryString });
+// io.on('connection', function(socket) {
+//   // searches[socket.id] = {};
+//   // socket.on('q', function(q) {
+//   console.log('user connected')
+// })
+
+var stream = twitter.stream('statuses/filter', { track: '#VoiceFinale', language: 'en' });
+// var tweetsBuffer = [];
+
+stream.on('connect', function(request) {
+    console.log('Connected to Twitter API');
+});
+ 
+stream.on('disconnect', function(message) {
+    console.log('Disconnected from Twitter API. Message: ' + message);
+});
+ 
+stream.on('reconnect', function (request, response, connectInterval) {
+  console.log('Trying to reconnect to Twitter API in ' + connectInterval + ' ms');
+})
+stream.on('tweet', function(tweet) {
+  var msg = {};
+  msg.text = tweet.text;
+  msg.user = {
+    name: tweet.user.name,
+    image: tweet.user.profile_image_url
+  };
+  console.log(msg);
+  io.sockets.emit('tweets', msg);
+})
+
+// This checks to make sure there is a connection, if not, the tweet machine will stop functioning
+var nbOpenSockets = 0;
+ 
+io.sockets.on('connection', function(socket) {
+
+  socket.on('setTweet', function(data) {
+      console.log("hello", data.track)
+      console.log("I DID STUFF!!")
+    
+    if(data.track) {
+      console.log(data.track)
+      stream.stop()
+      
+      var newStream = twitter.stream('statuses/filter', { track: data.track, language: 'en' });
+
+      newStream.on('connect', function(request) {
+        console.log('Connected to Twitter API');
+      });
+
+      newStream.on('disconnect', function(message) {
+        console.log('Disconnected from Twitter API. Message: ' + message);
+      });
+
+      newStream.on('reconnect', function (request, response, connectInterval) {
+        console.log('Trying to reconnect to Twitter API in ' + connectInterval + ' ms');
+      });
+      newStream.on('tweet', function(tweet) {
+        var msg = {};
+        msg.text = tweet.text;
+        msg.user = {
+        name: tweet.user.name,
+        image: tweet.user.profile_image_url
+        };
+        console.log(msg);
+        io.sockets.emit('tweets', msg);
+      });
+
+    }
+  });
+
+
+
+
+
+
+  console.log('Client connected !');
+  if (nbOpenSockets <= 0) {
+    nbOpenSockets = 0;
+    console.log('First active client. Start streaming from Twitter');
+    stream.start();
+  }
+ 
+  nbOpenSockets++;
+ 
+  socket.on('disconnect', function() {
+    console.log('Client disconnected !');
+    nbOpenSockets--;
+
+    if (nbOpenSockets <= 0) {
+      nbOpenSockets = 0;
+      console.log("No active client. Stop streaming from Twitter");
+      stream.stop();
+    }
+  });
+});
+// io.on('connect', function(socket) {
+//   console.log('User connected');
+//   var stream = null;
+//   socket.on('location', function(newLocation) {
+//     if(stream) {
+//       stream.stop();
+//     }
+//     stream = twitter.stream('statuses/filter', { track: 'javascript' });
+//     stream.on('tweet', function(tweet) {
+//       console.log('Emitting tweet');
+//       socket.emit('tweets', tweet);
+//     });
+//   });
+//   socket.on('disconnect', function() {
+//     console.log('User disconnected');
+//     stream.stop();
+//   });
+// });
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -98,5 +244,5 @@ app.get('/*', function(req, res) {
 
 
 app.listen(port, function() {
-  console.log("I have " + port + " pokemon");
+  console.log("I have " + port + " comic books");
 });

@@ -16,7 +16,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/signup" ng-hide="isLoggedIn()">Sign up</a></li>
       <li><a href="/login" ng-hide="isLoggedIn()">Log in</a></li>
-      <li><a href="/" ng-click="logout()" ng-show="isLoggedIn()">Log out</a></li>
+      <li><a href="/" ng-click="logout()" ng-show="isLoggedIn()">Hello, {{auth.currentUser().email}}</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>

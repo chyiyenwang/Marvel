@@ -4,68 +4,81 @@
   <div class="col-sm-6 col-md-6 col-lg-6">
     <img ng-src="{{marvels.thumbnail.path}}.jpg" id="image" class="animated fadeInLeftBig img-responsive"/>
     <!-- Sits below the image (bottom-left pane) -->
-    <div class="bottom-left-pane animated fadeInUpBig">
+    <div class="animated fadeInUpBig" id="bottom-left-pane">
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h4>Height
+          <h4>HEIGHT
           <p><small>{{marvels.wiki.height}}</small></h4></p>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h4>Eyes
+          <h4>EYES
           <p><small>{{marvels.wiki.eyes}}</small></h4></p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h4>Weight
+          <h4>WEIGHT
           <p><small>{{marvels.wiki.weight}}</small></h4></p>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h4>Hair
+          <h4>HAIR
           <p><small>{{marvels.wiki.hair}}</small></h4></p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h4>Education
+          <h4>EDUCATION
           <p><small>{{marvels.wiki.education}}</small></h4></p>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h4>Relatives
+          <h4>RELATIVES
           <p><small>{{marvels.wiki.relatives}}</small></h4></p>
         </div>
       </div>
     </div>
   </div>
-  <div class="well animated fadeInRightBig col-sm-6 col-md-6 col-lg-6" id="right-pane">
-    <h4>Debut
+  <!-- Code block for the right pane -->
+  <div class="animated fadeInRightBig col-sm-6 col-md-6 col-lg-6" id="right-pane">
+    <h4>DEBUT
     <p><small>{{marvels.wiki.debut}}</small></h4></p>
     <hr>
-    <h4>Bio
+    <h4>BIO
     <p><small>{{marvels.wiki.bio_text}}</small></h4></p>
     <hr>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-6">
-        <h4>Real Name
-        <p><small>{{marvels.wiki.real_name}}</small></h4></p>
+        <h4>REAL NAME
+        <p><small class="blah">{{marvels.wiki.real_name}}</small></h4></p>
       </div>
       <div class="col-sm-6 col-md-6 col-lg-6">
-        <h4>Identity
+        <h4>IDENTITY
         <p><small>{{marvels.wiki.identity}}</small></h4></p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-6">
-        <h4>Citizenship
+        <h4>CITIZENSHIP
         <p><small>{{marvels.wiki.citizenship}}</small></h4></p>
       </div>
       <div class="col-sm-6 col-md-6 col-lg-6">
-        <h4>Groups
+        <h4>GROUP
         <p><small>{{marvels.wiki.groups}}</small></h4></p>
       </div>
     </div>
     <hr>
-    <h4>Powers
+    <h4>POWERS
     <p><small>{{marvels.wiki.powers}}</small></h4></p>
   </div>
+</div>
+
+<div class="container">
+  <section class="post">
+    <!-- <div class="well"> -->
+      <header class="well post-header" ng-repeat="tweet in tweets">
+          <img class="post-avatar" alt="{{tweet.user.name}}" height="52" width="52" src="{{tweet.user.image}}" />
+          <h4 class="post-user"> {{tweet.user.name}}</h4>
+          <h5>{{tweet.text}}</h5>
+      <!-- </header> -->
+    </div>
+  </section>
 </div>
