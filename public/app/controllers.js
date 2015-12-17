@@ -46,6 +46,9 @@ angular.module("MarvelCtrls", ["MarvelServices"])
 .controller("MarvelUpdateCtrl", ["$scope", "$routeParams", "$location", "Marvel", function($scope, $routeParams, $location, Marvel) {
   Marvel.get({id: $routeParams.id}, function(data) {
     $scope.marvel = data;
+    
+    $scope.image = data.thumbnail.path.concat(".") + data.thumbnail.extension;
+
     $scope.url = data.thumbnail.path;
     $scope.ext = data.thumbnail.extension;
     $scope.height = data.wiki.height;
@@ -56,6 +59,7 @@ angular.module("MarvelCtrls", ["MarvelServices"])
     $scope.relatives = data.wiki.relatives;
     $scope.debut = data.wiki.debut;
     $scope.bio_text = data.wiki.bio_text;
+    $scope.real_name = data.wiki.real_name;
     $scope.identity = data.wiki.identity;
     $scope.citizenship = data.wiki.citizenship;
     $scope.group = data.wiki.group;
@@ -76,8 +80,8 @@ angular.module("MarvelCtrls", ["MarvelServices"])
           education: $scope.education,
           relatives: $scope.relatives,
           debut: $scope.debut,
-          bio_text: $scope.bio,
-          real_name: $scope.realname,
+          bio_text: $scope.bio_text,
+          real_name: $scope.real_name,
           identity: $scope.identity,
           citizenship: $scope.citizenship,
           group: $scope.group,
