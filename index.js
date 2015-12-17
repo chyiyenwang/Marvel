@@ -17,7 +17,7 @@ var twitter = new Twit({
   access_token_secret:  process.env.TWIT_ACCESS_TOKEN_SECRET
 });
 
-var secret = "ifyousmellwhattherockiscookin";
+var secret = process.env.SALT;
 
 var User = require("./models/user");
 var Marvel = require('./models/marvel');
