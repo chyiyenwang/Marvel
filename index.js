@@ -160,22 +160,19 @@ io.sockets.on('connection', function(socket) {
       var filtered = data.statuses.map(function(element) {
           // console.log("type: " + element.metadata.result_type + "; count: " + element.retweet_count + ";retweeted? " + element.retweeted);
           msg.text = element.text;
+          console.log(element.entities.media);
             if (element.entities.media) {
-              if (element.entities.media != null) {
-                parseArray = element.entities.media.map(function(value) {
-                  return value.media_url;
-                });
-                if (parseArray.length > 0) {
-                  msg.url = parseArray[0];
-                }
-              }
+              msg.url = element.entities.media[0].media_url
+            }
+            else {
+              msg.url = ''
             }
             msg.user = {
               name: element.user.screen_name,
               image: element.user.profile_image_url
             }
         // }
-        // console.log(msg);
+        // console.log(msg.url);
         io.sockets.emit('tweets', msg);
       })
     })

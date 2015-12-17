@@ -1,9 +1,12 @@
 <h1 class="animated fadeInDownBig" id="name">{{marvels.name}}</h1>
 <a href="marvel/update/{{marvels._id}}">update</a>
 
+
 <div class="row testing">
   <div class="col-sm-6 col-md-6 col-lg-6">
+  <!-- IMAGE -->
     <img ng-src="{{image}}" id="image" class="animated fadeInLeftBig img-responsive"/>
+
     <!-- Sits below the image (bottom-left pane) -->
     <div class="animated fadeInUpBig" id="bottom-left-pane">
       <div class="row">
@@ -38,6 +41,7 @@
       </div>
     </div>
   </div>
+
   <!-- Code block for the right pane -->
 <div id="right-background">
   <div class="animated fadeInRightBig col-sm-6 col-md-6 col-lg-6" id="right-pane">
@@ -74,6 +78,8 @@
 </div>
 </div>
 
+
+<!-- Tweets Start here -->
 <div class="row" id="tweets">
   <div class="container">
     <section class="post">
@@ -87,3 +93,4 @@
     </section>
   </div>
 </div>
+

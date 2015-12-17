@@ -72,6 +72,17 @@ var marvelSchema = new Schema({
         "main_image": String,
         "bio_text": String,
         "bio": String,
+        "hair": String,
+        "height": String,
+        "weight": String,
+        "education": String,
+        "eyes": String,
+        "relatives": String,
+        "real_name": String,
+        "identity": String,
+        "citizenship": String,
+        "group": String,
+        "powers": String,
         "categories": [String]
     }
 })

@@ -1,4 +1,4 @@
-var app = angular.module('MarvelApp', ['ngRoute', 'MarvelServices', 'MarvelCtrls', 'infinite-scroll']);
+var app = angular.module('MarvelApp', ['ui.bootstrap', 'ngRoute', 'MarvelServices', 'MarvelCtrls', 'infinite-scroll']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
@@ -37,8 +37,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $rootScope.isLoggedIn = function() {
     return Auth.isLoggedIn.apply(Auth);
   }
-  }
-]);
+}]);
 app.filter('capitalize', function() {
     return function(input) {
       return input.charAt(0).toUpperCase() + input.slice(1);

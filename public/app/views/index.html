@@ -8,8 +8,5 @@
 <!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-distance="3"> -->
   <div class="well" ng-repeat="marvel in marvels | filter:search | limitTo:filterLimit">
     <a ng-href="/marvel/{{marvel._id}}">{{marvel.name}}</a>
-    <form method="GET">
-        <input type="text" name="queryString" value="{{marvel.name}}">
-    </form>
   </div>
 <!-- </div> -->
