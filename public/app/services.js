@@ -1,6 +1,6 @@
 angular.module("MarvelServices", ["ngResource"])
 .factory("Marvel", ["$resource", function($resource) {
-  return $resource("http://localhost:3000/api/marvels/:id");
+  return $resource("http://localhost:3000/api/marvels/:id", null, {"update": {method: "PUT"}});
 }])
 .factory('socket', function ($rootScope) {
   var socket = io.connect('http://localhost:3030');
@@ -25,6 +25,17 @@ angular.module("MarvelServices", ["ngResource"])
     }
   };
 })
+// .factory("", ["$resource", function($resource) {
+//     return $resource("http://localhost:3000/api/flashcards/:id", null,
+//     {
+//         "update": { 
+//             method: "PUT",
+//             params: {
+//                 id: "@id"
+//             }
+//         }
+//     });
+// }])
 .factory('Auth', ['$window', function($window) {
   return {
     saveToken: function(token) {

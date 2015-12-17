@@ -160,79 +160,34 @@ io.sockets.on('connection', function(socket) {
       var urlRegex = /(https:\/\/t\.co\/[^\s]*)/g;
 
       var filtered = data.statuses.map(function(element) {
-        var blah = element.text.match(urlRegex)
-        msg.text = element.text;
-        // if (blah != null) {
-        //   msg.url = blah[0];
-        // }
-        // if (element.entities.media) {
-        //   var shit = element.entities.media[0].media_url;
-        // }
-        if (element.entities.media) {
-          if (element.entities.media != null) {
-            parseArray = element.entities.media.map(function(value) {
-                return value.media_url;
-            });
-            if (parseArray.length > 0) {
-              msg.url = parseArray[0];
+        console.log(element.metadata.result_type)
+        // console.log(element.retweeted_status)
+        var filtered2 = element.metadata.result_type
+        // if (element.metadata.result_type == "popular") {
+          // console.log(element.retweet_count);
+          // console.log(element.retweeted);
+          msg.text = element.text;
+            if (element.entities.media) {
+              if (element.entities.media != null) {
+                parseArray = element.entities.media.map(function(value) {
+                  return value.media_url;
+                });
+                if (parseArray.length > 0) {
+                  msg.url = parseArray[0];
+                }
+              }
             }
-          }
-        }
-
-        // msg.url = element.text.replace(urlRegex, function(url) {
-        //   return "<a href=" + url + > + url + "</a>";
-        // })
-        msg.user = {
-          name: element.user.screen_name,
-          image: element.user.profile_image_url
-        }
-        // console.log(parseArray);
-        // console.log(shit);
+            msg.user = {
+              name: element.user.screen_name,
+              image: element.user.profile_image_url
+            }
+        // }
+        // console.log(msg);
         io.sockets.emit('tweets', msg);
       })
     })
   })
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // THIS STUFF WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -296,18 +251,6 @@ io.sockets.on('connection', function(socket) {
 //   });
 // });
 // END OF THE WORKING STUFF!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // MIGHT BE ABLE TO DELETE THIS STUFF

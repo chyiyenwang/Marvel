@@ -9,6 +9,38 @@ border-collapse: collapse !important;
 background-image: none !important;
 }
 
+
+/*.testing {
+  background: linear-gradient(87deg, #110000 50%, #BE0606 50%);
+}*/
+
+.navbar {
+  background-color: white;
+}
+
+/*#right-background {
+  height: 100%;
+  width: 100%;
+
+  background: linear-gradient(87deg, #110000 50%, #BE0606 50%);;
+}*/
+
+body {
+    height: 100%;
+    background: linear-gradient(87deg, #110000 50%, #BE0606 50%);
+    /*background: linear-gradient(87deg, green 50%, blue 50%);*/
+}
+
+/*body {
+    height: 100%;
+    background-image: url('http://i.imgur.com/9HMnxKs.png');
+    background-repeat: repeat-y;
+    background-size: 50% auto;
+}*/
+#name {
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+}
 #image {
   width: 200%;
   height: auto;
@@ -17,14 +49,14 @@ background-image: none !important;
 #right-pane {
   /*border: 2px solid black;*/
   /*background: linear-gradient(to right, #F0141E, #AD0A1C);*/
-  background: linear-gradient(to right, #BE0606, #850303);
+  /*background: linear-gradient(to top right, #BE0606, #850303);*/
   font-family: 'PT Sans', sans-serif;
   color: white;
 }
 
 #bottom-left-pane {
   /*border: 2px solid red;*/
-  background: #110000;
+  /*background: #110000;*/
   font-family: 'PT Sans', sans-serif;
   color: white;
 }
@@ -40,7 +72,7 @@ div h4 p small {
 
 /* Twitter Timeline */
 .post {
-  background: #292929;
+  background: #212121;
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 0.5em;
@@ -68,4 +100,14 @@ div h4 p small {
 
 #individual {
   background: white;
+}
+
+
+@media (max-width: 767px) {
+  body {
+    background: #110000;
+  }
+  #right-pane {
+    background: #BE0606;
+  }
 }

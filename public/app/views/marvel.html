@@ -1,6 +1,6 @@
-<h2 class="animated fadeInDownBig">{{marvels.name}}<hr></h2>
+<h1 class="animated fadeInDownBig" id="name">{{marvels.name}}</h1>
 
-<div class="row">
+<div class="row testing">
   <div class="col-sm-6 col-md-6 col-lg-6">
     <img ng-src="{{marvels.thumbnail.path}}.jpg" id="image" class="animated fadeInLeftBig img-responsive"/>
     <!-- Sits below the image (bottom-left pane) -->
@@ -38,6 +38,7 @@
     </div>
   </div>
   <!-- Code block for the right pane -->
+<div id="right-background">
   <div class="animated fadeInRightBig col-sm-6 col-md-6 col-lg-6" id="right-pane">
     <h4>DEBUT
     <p><small>{{marvels.wiki.debut}}</small></h4></p>
@@ -70,6 +71,7 @@
     <p><small>{{marvels.wiki.powers}}</small></h4></p>
   </div>
 </div>
+</div>
 
 <div class="row" id="tweets">
   <div class="container">
@@ -78,9 +80,7 @@
           <img class="post-avatar" alt="{{tweet.user.name}}" height="52" width="52" src="{{tweet.user.image}}" />
           <h4 class="post-user"> {{tweet.user.name}}</h4>
           <h5>{{tweet.text}}</h5>
-          <!-- <img ng-img="{{tweet.url}}"> -->
-          <img ng-src="{{tweet.url}}">
-          <img 
+          <img ng-src="{{tweet.url}}" class="img-responsive">
         </header>
       </div>
     </section>
