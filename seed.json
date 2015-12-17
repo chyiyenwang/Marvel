@@ -1,0 +1,5 @@
+{
+  "undefined": "mongodb://localhost/marvel",
+  "dev": "mongodb://localhost/marvel",
+  "prod": "mongodb://localhost/marvel"
+}
