@@ -4,7 +4,10 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    var query = Marvel.find().limit(20);
+    // var randomNumber = Math.floor(Math.random() * (70 - 1 + 1)) + 1
+    // console.log(randomNumber)
+    var randomNumber = Math.random() * 1042;
+    var query = Marvel.find().skip(randomNumber).limit(20);
     query.find(function(err, marvels) {
       if (err) return res.status(500).send(err);
       res.send(marvels);
