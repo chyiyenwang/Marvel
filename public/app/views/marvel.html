@@ -1,8 +1,9 @@
 <h1 class="animated fadeInDownBig" id="name">{{marvels.name}}</h1>
+<a href="marvel/update/{{marvels._id}}">update</a>
 
 <div class="row testing">
   <div class="col-sm-6 col-md-6 col-lg-6">
-    <img ng-src="{{marvels.thumbnail.path}}.jpg" id="image" class="animated fadeInLeftBig img-responsive"/>
+    <img ng-src="{{image}}" id="image" class="animated fadeInLeftBig img-responsive"/>
     <!-- Sits below the image (bottom-left pane) -->
     <div class="animated fadeInUpBig" id="bottom-left-pane">
       <div class="row">

@@ -30,12 +30,10 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   $scope.tweets = [];
 
   Marvel.get({id: $routeParams.id}, function(data) {
-    
     $scope.marvels = data;
-    // console.log($scope.marvels.name.split(' (')[0]);
-    var parsedName = $scope.marvels.name.split(' (')[0].split(' ');
-    parsedName = parsedName.join("");
-    parsedName = parsedName.split('-');
+    $scope.image = data.thumbnail.path.concat("."+data.thumbnail.extension);
+    var parsedName = $scope.marvels.name.split(' (')[0].split(' ').join("").split("-").join("");
+
     socket.emit('setTweet', {track: '#' + parsedName});
   }, function(data) {
     console.log(data);
@@ -45,8 +43,33 @@ angular.module("MarvelCtrls", ["MarvelServices"])
     $scope.tweets = $scope.tweets.concat(data);
   });
 }])
+.controller("MarvelUpdateCtrl", ["$scope", "$routeParams", "$location", "Marvel", function($scope, $routeParams, $location, Marvel) {
+  
+  $scope.putMarvel = function() {
+    var params = {
+      path: $scope.url,
+      extension: $scope.ext,
+      height: $scope.height,
+      eyes: $scope.eyes,
+      weight: $scope.weight,
+      hair: $scope.hair,
+      education: $scope.education,
+      relatives: $scope.relatives,
+      debut: $scope.debut,
+      bio: $scope.bio,
+      real_name: $scope.realname,
+      identity: $scope.identity,
+      citizenship: $scope.citizenship,
+      group: $scope.group,
+      powers: $scope.powers
+    }
+    Marvel.update({id: $routeParams.id}, {params: params});
+    $location.path("marvel/" + $routeParams.id);
+
+  }
+}])
 .controller('NavCtrl', ['$scope', "$location", "Auth", function($scope, $location, Auth) {
-    $scope.auth = Auth;
+  $scope.auth = Auth;
   $scope.user = $scope.auth.currentUser();
   $scope.logout = function() {
     Auth.removeToken();

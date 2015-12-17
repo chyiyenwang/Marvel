@@ -28,7 +28,6 @@ background-image: none !important;
 body {
     height: 100%;
     background: linear-gradient(87deg, #110000 50%, #BE0606 50%);
-    /*background: linear-gradient(87deg, green 50%, blue 50%);*/
 }
 
 /*body {

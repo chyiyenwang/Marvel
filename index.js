@@ -29,8 +29,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 var path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, "bower_components")));
-// var basename  = path.basename(module.filename);
 
 app.use('/api/users', expressJWT({secret: secret})
 .unless({path: ['/api/users'], method: 'post'}));
@@ -155,17 +153,12 @@ app.post("/api/auth", function(req, res) {
 // })
 io.sockets.on('connection', function(socket) {
   socket.on('setTweet', function(query) {
-    twitter.get('search/tweets', { q: query.track, count: 10, lang: 'en' }, function(err, data, response) {
+    twitter.get('search/tweets', { q: query.track + " -RT ", count: 10, lang: 'en' }, function(err, data, response) {
       var msg = {};
       var urlRegex = /(https:\/\/t\.co\/[^\s]*)/g;
 
       var filtered = data.statuses.map(function(element) {
-        console.log(element.metadata.result_type)
-        // console.log(element.retweeted_status)
-        var filtered2 = element.metadata.result_type
-        // if (element.metadata.result_type == "popular") {
-          // console.log(element.retweet_count);
-          // console.log(element.retweeted);
+          // console.log("type: " + element.metadata.result_type + "; count: " + element.retweet_count + ";retweeted? " + element.retweeted);
           msg.text = element.text;
             if (element.entities.media) {
               if (element.entities.media != null) {

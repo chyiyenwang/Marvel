@@ -9,10 +9,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   .when("/about", {
     templateUrl: "app/views/about.html"
   })
-  .when("/marvel/:id", {
-    templateUrl: "app/views/marvel.html",
-    controller: "MarvelShowCtrl"
-  })
   .when("/login", {
     templateUrl: "app/views/userLogin.html",
     controller: "LoginCtrl"
@@ -20,6 +16,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   .when("/signup", {
     templateUrl: "app/views/userLogin.html",
     controller: "SignupCtrl"
+  })
+  .when("/marvel/update/:id", {
+    templateUrl: "app/views/updateMarvel.html",
+    controller: "MarvelUpdateCtrl"
+  })
+  .when("/marvel/:id", {
+    templateUrl: "app/views/marvel.html",
+    controller: "MarvelShowCtrl"
   })
   .otherwise({
     templateUrl: "app/views/404.html"
