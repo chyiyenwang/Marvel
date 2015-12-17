@@ -4,7 +4,8 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    Marvel.find(function(err, marvels) {
+    var query = Marvel.find().limit(20);
+    query.find(function(err, marvels) {
       if (err) return res.status(500).send(err);
       res.send(marvels);
     });
