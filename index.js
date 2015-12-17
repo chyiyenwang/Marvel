@@ -5,8 +5,8 @@ var expressJWT = require("express-jwt");
 var jwt = require("jsonwebtoken");
 var request = require('request');
 var Twit = require('twit');
-var server = app.listen(3030);
-var io = require('socket.io').listen(server);
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
 
@@ -269,6 +269,6 @@ app.get('/*', function(req, res) {
 });
 
 
-app.listen(port, function() {
+server.listen(port, function() {
   console.log("I have " + port + " comic books");
 });

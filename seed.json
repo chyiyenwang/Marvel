@@ -1,5 +1,5 @@
 {
-  "undefined": "mongodb://localhost/marvel",
-  "dev": "mongodb://localhost/marvel",
-  "prod": "mongodb://localhost/marvel"
+  "undefined": "mongodb://heroku_b8nzjktc:ht4khv5a069j1oeqq4c4n7jft2@ds033135.mongolab.com:33135/heroku_b8nzjktc",
+  "dev": "mongodb://heroku_b8nzjktc:ht4khv5a069j1oeqq4c4n7jft2@ds033135.mongolab.com:33135/heroku_b8nzjktc",
+  "prod": "mongodb://heroku_b8nzjktc:ht4khv5a069j1oeqq4c4n7jft2@ds033135.mongolab.com:33135/heroku_b8nzjktc"
 }

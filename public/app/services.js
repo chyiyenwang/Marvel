@@ -3,7 +3,9 @@ angular.module("MarvelServices", ["ngResource"])
   return $resource("/api/marvels/:id", null, {"update": {method: "PUT"}});
 }])
 .factory('socket', function ($rootScope) {
-  var socket = io.connect('http://searchmarvel.herokuapp.com/:3030');
+  var baseUrl = window.location.origin.replace(/^http/, "ws");
+  console.log(baseUrl);
+  var socket = io.connect(baseUrl);
   return {
     on: function (eventName, callback) {
       socket.on(eventName, function () {
