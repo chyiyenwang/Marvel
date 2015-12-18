@@ -33,20 +33,40 @@
   </div> -->
 
 
-      <div ng-repeat="marvel in marvels" ng-if="$index % 3 == 0">
+<!--       <div ng-repeat="marvel in marvels" ng-if="$index % 3 == 0">
         <div style="width:1200px;margin:auto;" >
-          <div class="front-image">
+          <div class="front-image"  class="col-xs-12 col-sm-12 col-md-6">
             <a ng-href="/marvel/{{marvels[$index].id}}"><img ng-src="{{marvels[$index].url}}" class="img-responsive" style="float:left;"></a>
             <p class="front-image-text">{{marvels[$index].name}}</p>
           </div>
-          <div class="front-image">
+          <div class="front-image"  class="col-xs-12 col-sm-12 col-md-6">
             <a ng-href="/marvel/{{$index + 1 == marvels.length ? marvels[0].id : marvels[$index+1].id}}"><img ng-src="{{$index + 1 == marvels.length ? marvels[0].url : marvels[$index+1].url}}" class="img-responsive" style="float:left;"></a>
             <p class="front-image-text">{{$index + 1 == marvels.length ? marvels[0].name : marvels[$index+1].name}}<p>
           </div>
-          <div class="front-image">
+          <div class="front-image"  class="col-xs-12 col-sm-12 col-md-6">
             <a ng-href="/marvel/{{$index + 1 == marvels.length || $index + 2 == marvels.length ? marvels[1].id : marvels[$index+2].id}}"><img ng-src="{{$index + 1 == marvels.length || $index + 2 == marvels.length ? marvels[1].url : marvels[$index+2].url}}" class="img-responsive" style="float:left;"></a>
             <p class="front-image-text">{{$index + 1 == marvels.length || $index + 2 == marvels.length ? marvels[1].name : marvels[$index+2].name}}<p>
-          </div>
+          </div> -->
+<div style="width:1200px;margin:auto;" ng-repeat="marvel in marvels" ng-if="$index % 3 == 0" class="row">
+  <div class="front-image"  class="col-xs-12 col-sm-12 col-md-12">
+    <a ng-href="/marvel/{{marvels[$index].id}}">
+      <img ng-src="{{marvels[$index].url}}" style="float:left;" class="col-xs-12 col-sm-12 col-md-12">
+    </a>
+    <p class="front-image-text">{{marvels[$index].name}}</p>
+  </div>
+  <div class="front-image"  class="col-xs-12 col-sm-12 col-md-12">
+    <a ng-href="/marvel/{{marvels[$index+1].id}}">
+      <img ng-src="{{marvels[$index+1].url}}" style="float:left;" class="col-xs-12 col-sm-12 col-md-12">
+    </a>
+    <p class="front-image-text">{{marvels[$index+1].name}}<p>
+  </div>
+  <div class="front-image"  class="col-xs-12 col-sm-12 col-md-12">
+  <a ng-href="/marvel/{{marvels[$index+2].id}}">
+    <img ng-src="{{marvels[$index+2].url}}" style="float:left;">
+  </a>
+  <p class="front-image-text">{{marvels[$index+2].name}}<p>
+  </div>
+</div>
 
 
 <!--           <div class="front-image">
@@ -57,5 +77,5 @@
             <a ng-href="/marvel/{{$index + 1 == marvels.length || $index + 2 == marvels.length ? marvels[1].id : marvels[$index+2].id}}"><img ng-src="{{$index + 1 == marvels.length || $index + 2 == marvels.length ? marvels[1].url : marvels[$index+2].url}}" class="img-responsive" style="float:left;"></a>
             <p class="front-image-text">{{$index + 1 == marvels.length || $index + 2 == marvels.length ? marvels[1].name : marvels[$index+2].name}}<p>
           </div> -->
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
