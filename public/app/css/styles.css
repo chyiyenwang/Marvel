@@ -36,9 +36,20 @@ background-image: none !important;
   border: none;
 }
 
+#fourOhfour {
+  color: grey;
+  text-align: center;
+  margin: 0 auto;
+}
+
 body {
     height: 100%;
     background: linear-gradient(87deg, #110000 45%, #BE0606);
+}
+
+#splash {
+  text-align: center;
+  margin: 0 auto;
 }
 
 .front-image {
@@ -47,8 +58,10 @@ body {
   vertical-align: top;
 }
 .front-image a {
+  font-family: 'PT Sans', sans-serif;
   color: white;
   text-align: center;
+  margin: 0 auto;
 }
 
 .front-image-text {

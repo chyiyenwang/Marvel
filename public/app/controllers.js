@@ -3,7 +3,7 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   $scope.marvels = [];
   $scope.auth = Auth;
   $scope.user = $scope.auth.currentUser();
-  $scope.myInterval = 2000;
+  // $scope.myInterval = 2000;
 
   Marvel.query(function success(data) {
     // console.log(data)
