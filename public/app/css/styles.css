@@ -42,9 +42,13 @@ body {
 }
 
 .front-image {
-  width: 32%;
+  /*width: 32%;*/
   display: inline-block;
   vertical-align: top;
+}
+.front-image a {
+  color: white;
+  text-align: center;
 }
 
 .front-image-text {
@@ -54,8 +58,10 @@ body {
 }
 
 .front-image img {
-  width: 100%;
+  /*width: 100%;*/
+  width: 400px;
   height: 400px;
+  max-height: 400px;
   vertical-align: top;
 }
 
@@ -122,15 +128,6 @@ div h4 p small {
 input {
   color: black;
 }
-
-/*@media (max-width: 1195px) {
-  body {
-    background: #110000;
-  }
-  #right-pane {
-    background: #BE0606;
-  }
-}*/
 
 @media (max-width: 767px) {
   body {
