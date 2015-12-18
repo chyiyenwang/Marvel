@@ -1,4 +1,4 @@
-var app = angular.module('MarvelApp', ['ui.bootstrap', 'ngRoute', 'MarvelServices', 'MarvelCtrls', 'infinite-scroll']);
+var app = angular.module('MarvelApp', ['ui.bootstrap', 'ngAnimate', 'ngRoute', 'MarvelServices', 'MarvelCtrls', 'infinite-scroll']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider

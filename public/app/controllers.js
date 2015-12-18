@@ -3,11 +3,21 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   $scope.marvels = [];
   $scope.auth = Auth;
   $scope.user = $scope.auth.currentUser();
+  $scope.myInterval = 2000;
 
   Marvel.query(function success(data) {
+    // console.log(data)
     var shuffleMarvels = shuffle(data);
-    $scope.filterLimit = 20;
-    $scope.marvels = shuffleMarvels;
+    // $scope.filterLimit = 21;
+    // $scope.marvels = shuffleMarvels
+    $scope.marvels = shuffleMarvels.map(function(obj){
+      return {
+        id: obj._id,
+        url: obj.thumbnail ? (obj.thumbnail.path + "." + obj.thumbnail.extension) : '',
+        name: obj.name
+      }
+    });
+    console.log($scope.marvels)
   }, function error(data) {
     console.log(data);
   });
@@ -25,6 +35,35 @@ angular.module("MarvelCtrls", ["MarvelServices"])
     }
     return arr;
   };
+  // $scope.addSlide = function() {
+  //   var newWidth = 600 + slides.length + 1;
+  //   slides.push({
+  //     image: [$scope.marvels],
+  //     name: [$scope.marvels]
+  //   //   image: 'http://placekitten.com/' + newWidth + '/300',
+  //   //   text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+  //   //     ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+  //   });
+  // };
+  // for (var i=0; i<4; i++) {
+  //   $scope.addSlide();
+  // }
+
+  $scope.$watch('search', function(newVal, oldVal) {
+    // console.log(newVal)
+    var characters = Marvel.query({name: newVal},function(data){
+      $scope.marvels = data.map(function(obj){
+        return {
+          id: obj._id,
+          url: obj.thumbnail ? (obj.thumbnail.path + "." + obj.thumbnail.extension) : '',
+          name: obj.name
+        }
+        console.log($scope.marvels);
+      });
+    });
+    
+    // console.log(test)
+  })
 }])
 .controller("MarvelShowCtrl", ["$scope", "$routeParams", "Marvel", "socket", function($scope, $routeParams, Marvel, socket) {
   $scope.tweets = [];

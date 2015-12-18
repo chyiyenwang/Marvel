@@ -6,12 +6,34 @@ router.route('/')
   .get(function(req, res) {
     // var randomNumber = Math.floor(Math.random() * (70 - 1 + 1)) + 1
     // console.log(randomNumber)
-    var randomNumber = Math.random() * 1042;
-    var query = Marvel.find().skip(randomNumber).limit(20);
-    query.find(function(err, marvels) {
-      if (err) return res.status(500).send(err);
-      res.send(marvels);
-    });
+    // when i go to /api/marvels?name='wolverine' do this
+    console.log(req.query)
+    if (req.query.name) {
+      var query = Marvel.find(
+        {'name': { "$regex": req.query.name, "$options":"i"}
+      });
+
+      query.find(function(err, marvels) {
+        if (err) return res.status(500).send(err);
+        res.send(marvels);
+      });
+    } else {
+      // else when I got to /api/marvels do this
+      var randomNumber = Math.random() * 1042;
+      var query = Marvel.find().skip(randomNumber).limit(21);
+      query.find(function(err, marvels) {
+        if (err) return res.status(500).send(err);
+        res.send(marvels);
+      });
+    }
+    
+
+
+
+    // Marvel.find(function(err, marvels) {
+    //   if (err) return res.status(500).send(err);
+    //   res.send(marvels);
+    // });
   })
   .post(function(req, res) {
     Marvel.create(req.body, function(err, marvel) {

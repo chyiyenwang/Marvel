@@ -8,16 +8,56 @@ border-radius: 0px !important;
 border-collapse: collapse !important;
 background-image: none !important;
 }
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
 
+.navbar-default .navbar-nav>li>a:hover {
+  color: grey;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+.navbar-default .navbar-brand:hover {
+  color: grey;
+}
+
+.search-box {
+  margin: 0 auto;
+  width: 50%;
+}
+
+.link {
+  color: white;
+}
 .navbar {
-  background-color: white;
+  background-color: rgba(0, 0, 0, .5);
+  border: none;
 }
 
 body {
     height: 100%;
-    background: linear-gradient(87deg, #110000 50%, #BE0606 50%);
+    background: linear-gradient(87deg, #110000 45%, #BE0606);
 }
 
+.front-image {
+  width: 32%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.front-image-text {
+  font-family: 'PT Sans', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.front-image img {
+  width: 100%;
+  height: 400px;
+  vertical-align: top;
+}
 
 #name {
   color: white;
@@ -82,6 +122,15 @@ div h4 p small {
 input {
   color: black;
 }
+
+/*@media (max-width: 1195px) {
+  body {
+    background: #110000;
+  }
+  #right-pane {
+    background: #BE0606;
+  }
+}*/
 
 @media (max-width: 767px) {
   body {
