@@ -11,6 +11,7 @@ Search Marvel is an app created to be like a wiki page.  This app uses JSON file
 * CSS
 * JavaScript
 * Bootstrap
+# Twitter API
 
 ### Approach Taken
 I wanted to create an API that could help people search for their favorite Marvel character.  I first found JSON files for the characters and imported them into MongoDB and then proceeded to make the character show page.
