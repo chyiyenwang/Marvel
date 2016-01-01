@@ -7,7 +7,7 @@ router.route('/')
     // var randomNumber = Math.floor(Math.random() * (70 - 1 + 1)) + 1
     // console.log(randomNumber)
     // when i go to /api/marvels?name='wolverine' do this
-    console.log(req.query)
+    // console.log(req.query)
     if (req.query.name) {
       var query = Marvel.find(
         {'name': { "$regex": req.query.name, "$options":"i"}
