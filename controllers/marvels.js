@@ -26,14 +26,6 @@ router.route('/')
         res.send(marvels);
       });
     }
-    
-
-
-
-    // Marvel.find(function(err, marvels) {
-    //   if (err) return res.status(500).send(err);
-    //   res.send(marvels);
-    // });
   })
   .post(function(req, res) {
     Marvel.create(req.body, function(err, marvel) {

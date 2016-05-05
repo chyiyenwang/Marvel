@@ -1,5 +1,4 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
-  <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -7,17 +6,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">Marvel Search</a>
+    <a class="navbar-brand" href="/">Search Marvel</a>
   </div>
-  <!-- <a href="marvel/update/{{marvels._id}}">update</a> -->
-
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <!-- <input type="text" class="form-control navbar-form navbar-left" placeholder="Search" ng-model="pokemon.search"> -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/signup" ng-hide="isLoggedIn()">Sign up</a></li>
       <li><a href="/login" ng-hide="isLoggedIn()">Log in</a></li>
       <li><a href="/" ng-click="logout()" ng-show="isLoggedIn()">Hello, {{auth.currentUser().email}}</a></li>
     </ul>
-  </div><!-- /.navbar-collapse -->
+  </div>
 </nav>

@@ -3,13 +3,9 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   $scope.marvels = [];
   $scope.auth = Auth;
   $scope.user = $scope.auth.currentUser();
-  // $scope.myInterval = 2000;
 
   Marvel.query(function success(data) {
-    // console.log(data)
     var shuffleMarvels = shuffle(data);
-    // $scope.filterLimit = 21;
-    // $scope.marvels = shuffleMarvels
     $scope.marvels = shuffleMarvels.map(function(obj){
       return {
         id: obj._id,
@@ -21,36 +17,18 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   }, function error(data) {
     console.log(data);
   });
-    // -> Fisher–Yates shuffle algorithm
   function shuffle(arr) {
     var m = arr.length, t, i;
-    // While there remain elements to shuffle…
     while (m) {
-      // Pick a remaining element…
       i = Math.floor(Math.random() * m--);
-      // And swap it with the current element.
       t = arr[m];
       arr[m] = arr[i];
       arr[i] = t;
     }
     return arr;
   };
-  // $scope.addSlide = function() {
-  //   var newWidth = 600 + slides.length + 1;
-  //   slides.push({
-  //     image: [$scope.marvels],
-  //     name: [$scope.marvels]
-  //   //   image: 'http://placekitten.com/' + newWidth + '/300',
-  //   //   text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-  //   //     ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-  //   });
-  // };
-  // for (var i=0; i<4; i++) {
-  //   $scope.addSlide();
-  // }
 
   $scope.$watch('search', function(newVal, oldVal) {
-    // console.log(newVal)
     var characters = Marvel.query({name: newVal},function(data){
       $scope.marvels = data.map(function(obj){
         return {
@@ -60,9 +38,7 @@ angular.module("MarvelCtrls", ["MarvelServices"])
         }
         console.log($scope.marvels);
       });
-    });
-    
-    // console.log(test)
+    });    
   })
 }])
 .controller("MarvelShowCtrl", ["$scope", "$routeParams", "Marvel", "socket", function($scope, $routeParams, Marvel, socket) {
