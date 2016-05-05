@@ -20,7 +20,7 @@ This is a  MEAN stack app using socket.io, and consuming the Twitter API to crea
 * See what is trending on Twitter about each character
 
 ### Approach Taken
-I wanted to create an API that could help people search for their favorite Marvel character.  I first found JSON files for the characters, imported them into MongoDB, and then proceeded to make the character show page.  I used the JSON files because I was getting 500 errors with the Marvel API.  By importing the JSON files into my database I was able to create my API for each character.
+I initially wanted to consume the Marvel API but repeatedly got 500 errors so I changed my approach and created my own API. I found JSON files for the characters and then imported them into MongoDB. This API lets users search for their favorite Marvel character to display however they please.
 
 ### Upcoming Additions
 * Add responsive design for pictures on the index page.
