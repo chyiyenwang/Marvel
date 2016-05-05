@@ -11,7 +11,7 @@ This is a  MEAN stack app using socket.io, and consuming the Twitter API to crea
 * Socket.io
 * JavaScript
 * Bootstrap
-# Twitter API
+* Twitter API
 
 ### Features
 * Search for your favorite comic book character
