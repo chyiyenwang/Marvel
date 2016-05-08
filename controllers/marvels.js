@@ -4,10 +4,6 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    // var randomNumber = Math.floor(Math.random() * (70 - 1 + 1)) + 1
-    // console.log(randomNumber)
-    // when i go to /api/marvels?name='wolverine' do this
-    // console.log(req.query)
     if (req.query.name) {
       var query = Marvel.find(
         {'name': { "$regex": req.query.name, "$options":"i"}
@@ -15,16 +11,33 @@ router.route('/')
 
       query.find(function(err, marvels) {
         if (err) return res.status(500).send(err);
-        res.send(marvels);
-      });
+
+        var marvel = marvels.filter(function(data) {
+          return {
+            id: data._id,
+            name: data.name,
+            url: data.thumbnail ? (data.thumbnail.path + "." + data.thumbnail.extension) : '',
+          }
+        })
+        res.send(marvel);
+      })
     } else {
       // else when I got to /api/marvels do this
       var randomNumber = Math.random() * 1042;
       var query = Marvel.find().skip(randomNumber).limit(21);
+
       query.find(function(err, marvels) {
         if (err) return res.status(500).send(err);
-        res.send(marvels);
-      });
+
+        var marvel = marvels.filter(function(data) {
+          return {
+            id: data._id,
+            name: data.name,
+            url: data.thumbnail ? (data.thumbnail.path + "." + data.thumbnail.extension) : '',
+          }
+        })
+        res.send(marvel);
+      })
     }
   })
   .post(function(req, res) {

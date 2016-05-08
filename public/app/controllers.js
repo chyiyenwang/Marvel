@@ -4,29 +4,29 @@ angular.module("MarvelCtrls", ["MarvelServices"])
   $scope.auth = Auth;
   $scope.user = $scope.auth.currentUser();
 
-  Marvel.query(function success(data) {
-    var shuffleMarvels = shuffle(data);
-    $scope.marvels = shuffleMarvels.map(function(obj){
-      return {
-        id: obj._id,
-        url: obj.thumbnail ? (obj.thumbnail.path + "." + obj.thumbnail.extension) : '',
-        name: obj.name
-      }
-    });
-    console.log($scope.marvels)
-  }, function error(data) {
-    console.log(data);
-  });
-  function shuffle(arr) {
-    var m = arr.length, t, i;
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      t = arr[m];
-      arr[m] = arr[i];
-      arr[i] = t;
-    }
-    return arr;
-  };
+  // Marvel.query(function success(data) {
+  //   var shuffleMarvels = shuffle(data);
+  //   $scope.marvels = shuffleMarvels.map(function(obj){
+  //     return {
+  //       id: obj.id,
+  //       url: obj.url,
+  //       name: obj.name
+  //     }
+  //   });
+  //   console.log($scope.marvels)
+  // }, function error(data) {
+  //   console.log(data);
+  // });
+  // function shuffle(arr) {
+  //   var m = arr.length, t, i;
+  //   while (m) {
+  //     i = Math.floor(Math.random() * m--);
+  //     t = arr[m];
+  //     arr[m] = arr[i];
+  //     arr[i] = t;
+  //   }
+  //   return arr;
+  // };
 
   $scope.$watch('search', function(newVal, oldVal) {
     var characters = Marvel.query({name: newVal},function(data){
